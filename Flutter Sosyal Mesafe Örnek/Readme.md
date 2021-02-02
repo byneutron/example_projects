@@ -1,0 +1,1 @@
+Flutter ile geliştirilen bu projede yakın çevredeki bluetooth açık ve sosyal mesafe uygulamasını kullanan kullanıcıların sağlıklı alan içinde mi yoksa mesafe sınırını mı aştığı hem her iki kullanıcıya bildirim kanalı ile gidiyor hemde yönetici ye gerekli koordinat ve kişi sicil numaraları sql aracılığı ile sisteme kayıt ediliyor örnek proje kodu ve görselleri ektedir.

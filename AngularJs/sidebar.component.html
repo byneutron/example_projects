@@ -1,0 +1,128 @@
+<nav id="sidebar" class="sidebar" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}">
+
+  <!--SideBar-->
+  <div class="sidebar-content">
+    <perfect-scrollbar>
+      <div class="sidebar-header">
+        <a >VESTEL KONTROL</a><img style="min-width:50px;height: 30px;"class="img-responsive img-rounded" src="assets/img/vestel.png" alt="">
+
+      </div>
+
+      <div class="sidebar-profile">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="assets/img/user.jpg" alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Tugay Oktay
+            <strong>Okay</strong>
+          </span>
+          <span class="user-role">YÖNETİCİ</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>ÇEVRİMİÇİ</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="ARA...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li *ngFor="let menu of menus"
+            [ngClass]="{'active': menu.active , 'sidebar-dropdown':menu.type === 'dropdown' , 'header-menu':menu.type === 'header'}">
+            <span *ngIf="menu.type === 'header'" >{{menu.title}}</span>
+            <a *ngIf="menu.type !== 'header'"  (click)='toggle(menu)'>
+              <i class="{{menu.icon}}"></i>
+              <span >{{menu.title}}</span>
+              <span *ngIf="menu.badge" class="badge badge-pill" [ngClass]="menu.badge.class">{{menu.badge.text}}</span>
+            </a>
+            <div *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)">
+              <ul>
+                <!--Side bar change-->
+                <li *ngFor="let submenu of menu.submenus">
+                  <a routerLink="board"> {{submenu.title}}
+                    <span *ngIf="submenu.badge" class="badge badge-pill"
+                      [ngClass]="submenu.badge.class">{{submenu.badge.text}}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </perfect-scrollbar>
+  </div>
+  <div class="sidebar-footer">
+    <div class="btn-group" dropdown [dropup]="isDropup">
+      <a  dropdownToggle>
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">28</span>
+      </a>
+      <ul id="dropdown-dropup" *dropdownMenu style ="width: 100%" class="dropdown-menu"
+          role="menu" aria-labelledby="button-dropup">
+          <li role="menuitem"><a class="dropdown-item"><mat-icon style="color: blue;" class="icon">notifications_active</mat-icon><span style="color:blue">Bildirimlerim</span></a>
+          </li>
+          <li class="divider dropdown-divider"></li>
+        
+        <li role="menuitem"><a class="dropdown-item " href="#"><mat-icon class="icon">bug_report</mat-icon>Anlık Raporları Gör</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">track_changes</mat-icon>Tugay Projeyi Degiştirdi</a>
+        </li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">transfer_within_a_station</mat-icon>Ramazan Kaçtı</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon" style="color:red">notification_important</mat-icon><span style="color: red;">Bildirim Merkezine Git</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" dropdown [dropup]="isDropup">
+      <a  dropdownToggle>
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <ul id="dropdown-dropup" *dropdownMenu style ="width: 100%" class="dropdown-menu"
+          role="menu" aria-labelledby="button-dropup">
+          <li role="menuitem"><a class="dropdown-item"><mat-icon class="icon" style="color: blue;">chat_buble</mat-icon><span style="color:blue">Mesajlarım</span></a>
+          </li>
+          <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">filter_1</mat-icon>DENEME</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">filter_2</mat-icon>RAMAZAN</a>
+        </li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">filter_3</mat-icon>TUGAY
+          </a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" ><mat-icon class="icon" style="color: red;">message</mat-icon><span style="color: red;">Mesajların Tümünü Gör</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" dropdown [dropup]="isDropup">
+      <a  dropdownToggle>
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+      <ul id="dropdown-dropup" *dropdownMenu style ="width: 100%" class="dropdown-menu"
+          role="menu" aria-labelledby="button-dropup">
+          <li role="menuitem"><a class="dropdown-item"><mat-icon class="icon" style="color: blue;">settings_power</mat-icon><span style="color:blue">Ayarlar Menüsü</span></a>
+          </li>
+          <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">person</mat-icon>Profilim</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon">help</mat-icon>Yardım</a>
+        </li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#"><mat-icon class="icon" style="color: red;">settings</mat-icon><span style="color:red">Ayarlara Git</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <a href="#">
+        <i class="fa fa-power-off"></i>
+      </a>
+    </div>
+  </div>
+</nav>

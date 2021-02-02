@@ -1,0 +1,1 @@
+Bu projede php api bağlantısı aracılığı ile mssql sorgu çalıştırma kullanıcı bilgileri kontrolü sağlamaya yönelik örnek kodlar mevcuttur php den aldığım verileri json olarak program içinde kullanmaktayım.
